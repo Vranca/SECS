@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include <vector>
+#include <deque>
 
 namespace secs
 {
@@ -10,12 +11,14 @@ namespace secs
 	public:
 		EntityManager();
 		~EntityManager();
+		const Entity& create();
+		bool IsAlive(const Entity& e);
+		void Destroy(const Entity& e);
 
-		Entity& createEntity();
-		bool isAlive(Entity e);
 	private:
-		Entity m_nextEntity = 0;
-		std::vector<bool> m_entityPool; // Default initiallized to false
+		std::vector<uint8_t> m_Batch;
+		std::deque<uint32_t> m_FreeIndices;
+		std::vector<Entity> m_Entities;
 	};
 }
 
