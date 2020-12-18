@@ -1,6 +1,6 @@
 #pragma once
+#include <algorithm>
 #include <vector>
-#include <unordered_map>
 #include <stdint.h>
 #include "Entity.h"
 
@@ -43,15 +43,9 @@ namespace secs
 			m_Components.pop_back();
 
 			// Update entity map			
-			for (int i = 0; i < m_Indices.size(), i++)
-			{
-				if (m_Indices[i] == m_Components.size())
-				{
-					m_Indices[i] = m_Indices[e.Index];
-					m_Indices[e.Index] = nullptr;
-					return;
-				}
-			}
+			auto val = std::lower_bound(m_Indices.begin(), m_Indices.end(), m_Components.size());
+			*val = m_Indices[e.Index];
+			m_Indices[e.Index] = 0;
 		}
 	};
 }
