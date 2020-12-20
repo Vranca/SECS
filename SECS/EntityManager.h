@@ -6,7 +6,7 @@
 
 namespace secs
 {
-	class EntityManager
+	class _declspec(dllexport) EntityManager
 	{
 	public:
 		EntityManager();

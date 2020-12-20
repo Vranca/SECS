@@ -31,7 +31,7 @@ namespace secs
 			id = m_Batch.size(); // Start from 1 so 0 can be used as no value;
 		}
 
-		m_Entities.emplace_back(id, m_Batch[id]);
+		m_Entities.emplace_back(id, m_Batch[id - 1]);
 		return m_Entities.back();
 	}
 
